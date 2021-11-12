@@ -1,0 +1,16 @@
+-Adapt code to accept any size from 3 to 10
+	change anything hardcoded so it fits any size (nxn of course)
+-Add new game parameters (i.e. OBSTACLES, WINNING VALUE, MAX DEPTH FOR ADV SEARCH, MAX TIME FOR HEURISTIC SEARCH)
+	can be RNG
+-Adapt is_end function to take into account new obstacles
+	add new logic for win condition
+	watch out for winning values
+	horizontal ex: (0,i+1) ... (0,winning value-1) check if same symbol
+	vertical ex: (i+1,0) ... (winning value-1, 0) 
+	main diagonal ex: (i+1, j+1) ... (i+winning value-1, j+winning value -1), if wanna look opposite direction just inverse sign
+		OR
+	other diag ex: (i+1, j-1) ... (i+winning value-1, j-winning value-1), inverse sign for opposite direction
+	have variables for comparaison
+	obviously check if current location is legal or no
+-Figure out 2 heuristic functions (to give each node values from base case): easy/simple, complicated/hard
+-Output game trace to txt file
