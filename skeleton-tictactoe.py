@@ -1,5 +1,5 @@
 # based on code from https://stackabuse.com/minimax-and-alpha-beta-pruning-in-python
-
+import random
 import time
 
 class Game:
@@ -8,30 +8,50 @@ class Game:
 	HUMAN = 2
 	AI = 3
 	
-	def __init__(self, recommend = True, size = 3):
+	def __init__(self, recommend = True, size = 3, blocs = 0):
 		self.initialize_game()
 		self.recommend = recommend
 		self.board_size = size
+		self.blocs = blocs
 
 	def initialize_game(self):
 		self.current_state = []
+		bloc_tuple_list = []
+
+		found = False
+		for i in range(0,self.blocs):
+			while not found:
+				bloc_x = random.randint(0,self.board_size)
+				bloc_y = random.randint(0,self.board_size)
+				new_bloc = (bloc_x, bloc_y)
+
+				if bloc_tuple_list.count(new_bloc) == 0:
+					bloc_tuple_list.append(new_bloc)
+					found = True
+
+		found = False
 		for x in range(0,self.board_size):
 			self.current_state.append([])
 			for y in range(0, self.board_size):
-				self.current_state[x].append('.')
+				for z in bloc_tuple_list:
+					if x == z[0] and y == z[1]:
+						self.current_state[x][y] = '<>'
+						found = True
+				if not found:
+					self.current_state[x].append('.')
 		# Player X always plays first
 		self.player_turn = 'X'
 
 	def draw_board(self):
 		print()
-		for y in range(0, 3):
-			for x in range(0, 3):
+		for y in range(0, self.board_size):
+			for x in range(0, self.board_size):
 				print(F'{self.current_state[x][y]}', end="")
 			print()
 		print()
 		
 	def is_valid(self, px, py):
-		if px < 0 or px > 2 or py < 0 or py > 2:
+		if px < 0 or px > self.board_size-1 or py < 0 or py > self.board_size-1:
 			return False
 		elif self.current_state[px][py] != '.':
 			return False
@@ -40,13 +60,13 @@ class Game:
 
 	def is_end(self):
 		# Vertical win
-		for i in range(0, 3):
+		for i in range(0, self.board_size):
 			if (self.current_state[0][i] != '.' and
 				self.current_state[0][i] == self.current_state[1][i] and
 				self.current_state[1][i] == self.current_state[2][i]):
 				return self.current_state[0][i]
 		# Horizontal win
-		for i in range(0, 3):
+		for i in range(0, self.board_size):
 			if (self.current_state[i] == ['X', 'X', 'X']):
 				return 'X'
 			elif (self.current_state[i] == ['O', 'O', 'O']):
@@ -62,8 +82,8 @@ class Game:
 			self.current_state[0][2] == self.current_state[2][0]):
 			return self.current_state[0][2]
 		# Is whole board full?
-		for i in range(0, 3):
-			for j in range(0, 3):
+		for i in range(0, self.board_size):
+			for j in range(0, self.board_size):
 				# There's an empty field, we continue the game
 				if (self.current_state[i][j] == '.'):
 					return None
@@ -119,8 +139,8 @@ class Game:
 			return (1, x, y)
 		elif result == '.':
 			return (0, x, y)
-		for i in range(0, 3):
-			for j in range(0, 3):
+		for i in range(0, self.board_size):
+			for j in range(0, self.board_size):
 				if self.current_state[i][j] == '.':
 					if max:
 						self.current_state[i][j] = 'O'
@@ -158,8 +178,8 @@ class Game:
 			return (1, x, y)
 		elif result == '.':
 			return (0, x, y)
-		for i in range(0, 3):
-			for j in range(0, 3):
+		for i in range(0, self.board_size):
+			for j in range(0, self.board_size):
 				if self.current_state[i][j] == '.':
 					if max:
 						self.current_state[i][j] = 'O'
@@ -223,7 +243,10 @@ class Game:
 			self.switch_player()
 
 def main():
-	g = Game(recommend=True)
+	size = random.randint(3,10)
+	blocs = random.randint(0,2*size)
+
+	g = Game(recommend=True, size=size, blocs=blocs)
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
 
