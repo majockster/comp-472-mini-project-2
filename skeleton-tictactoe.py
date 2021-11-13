@@ -8,14 +8,17 @@ class Game:
 	HUMAN = 2
 	AI = 3
 	
-	def __init__(self, recommend = True):
+	def __init__(self, recommend = True, size = 3):
 		self.initialize_game()
 		self.recommend = recommend
-		
+		self.board_size = size
+
 	def initialize_game(self):
-		self.current_state = [['.','.','.'],
-							  ['.','.','.'],
-							  ['.','.','.']]
+		self.current_state = []
+		for x in range(0,self.board_size):
+			self.current_state.append([])
+			for y in range(0, self.board_size):
+				self.current_state[x].append('.')
 		# Player X always plays first
 		self.player_turn = 'X'
 
