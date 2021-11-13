@@ -9,33 +9,33 @@ class Game:
 	AI = 3
 	
 	def __init__(self, recommend = True, size = 3, blocs = 0):
-		self.initialize_game()
-		self.recommend = recommend
 		self.board_size = size
 		self.blocs = blocs
+		self.initialize_game()
+		self.recommend = recommend
 
 	def initialize_game(self):
 		self.current_state = []
 		bloc_tuple_list = []
 
-		found = False
 		for i in range(0,self.blocs):
+			found = False
 			while not found:
-				bloc_x = random.randint(0,self.board_size)
-				bloc_y = random.randint(0,self.board_size)
+				bloc_x = random.randint(0,self.board_size-1)
+				bloc_y = random.randint(0,self.board_size-1)
 				new_bloc = (bloc_x, bloc_y)
 
 				if bloc_tuple_list.count(new_bloc) == 0:
 					bloc_tuple_list.append(new_bloc)
 					found = True
 
-		found = False
 		for x in range(0,self.board_size):
 			self.current_state.append([])
 			for y in range(0, self.board_size):
+				found = False
 				for z in bloc_tuple_list:
 					if x == z[0] and y == z[1]:
-						self.current_state[x][y] = '<>'
+						self.current_state[x].append('<>')
 						found = True
 				if not found:
 					self.current_state[x].append('.')
@@ -44,9 +44,9 @@ class Game:
 
 	def draw_board(self):
 		print()
-		for y in range(0, self.board_size):
-			for x in range(0, self.board_size):
-				print(F'{self.current_state[x][y]}', end="")
+		for x in range(0, self.board_size):
+			for y in range(0, self.board_size):
+				print(F'{self.current_state[x][y]}', end="\t")
 			print()
 		print()
 		
@@ -245,7 +245,8 @@ class Game:
 def main():
 	size = random.randint(3,10)
 	blocs = random.randint(0,2*size)
-
+	# print(size)
+	# print(blocs)
 	g = Game(recommend=True, size=size, blocs=blocs)
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
