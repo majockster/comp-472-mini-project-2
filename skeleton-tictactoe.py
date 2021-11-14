@@ -220,6 +220,72 @@ class Game:
 			self.player_turn = 'X'
 		return self.player_turn
 
+	#Implementing e1
+
+	def e1 (self):
+	   #Check if there are no obstacles in the way
+	   #Starting with horizontal
+	   #Count the open rows,columns,diagonals
+
+	   #For horizontal
+	   numX = 0
+	   numO = 0
+	   for i in range(0, self.board_size):
+		   if self.player_turn == 'X' and self.current_state[i].count('O') == 0 and self.current_state[i].count('<>') == 0:
+			   numX +=1
+		   elif self.player_turn == 'O' and self.current_state[i].count('X') == 0 and self.current_state[i].count('<>') == 0:
+			   numO +=1
+
+	   #For vertical
+	   for i in range(0, self.board_size):
+		   openX = False
+		   openO = False
+		   for j in range(0, self.board_size):
+			   if self.player_turn == 'X' and ( self.current_state[j][i] == '.' or self.current_state[j][i] == 'X' ):
+				   openX=True
+			   elif self.player_turn == 'O' and ( self.current_state[j][i] == '.' or self.current_state[j][i] == 'O' ):
+				   openO=True
+			   else:
+				   openX = False
+				   openO = False
+		   if openX:
+			   numX +=1
+		   elif openO:
+			   numO +=1
+
+	   #For main diagonal
+	   openX = False
+	   openO = False
+	   for i in range(1, self.board_size):
+		   if self.player_turn == 'X' and (self.current_state[i][i] == '.' or self.current_state[i][i] == 'X'):
+			   openX = True
+		   elif self.player_turn == 'O' and (self.current_state[i][i] == '.' or self.current_state[i][i] == 'O'):
+			   openO = True
+		   else:
+			   openX = False
+			   openO = False
+	   if openX:
+		   numX += 1
+	   elif openO:
+		   numO += 1
+	   #Other diagonal
+	   openX = False
+	   openO = False
+	   for i in range(0, self.board_size):
+		   for j in range(self.board_size - 1, -1):
+			   if self.player_turn == 'X' and (self.current_state[i][j] == '.' or self.current_state[i][j] == 'X'):
+				   openX = True
+			   elif self.player_turn == 'O' and (self.current_state[i][j] == '.' or self.current_state[i][j] == 'O'):
+				   openO = True
+			   else:
+				   openX = False
+				   openO = False
+		   if openX:
+			   numX += 1
+		   elif openO:
+			   numO += 1
+	   return (numX - numO)
+
 	def minimax(self, max=False):
 		# Minimizing for 'X' and maximizing for 'O'
 		# Possible values are:
@@ -349,7 +415,6 @@ class Game:
 			self.current_state[x][y] = self.player_turn
 			self.switch_player()
 
-
 def set_bloc_pos(bloc_size, board_size):
 	bloc_tuple_list = []
 
@@ -365,7 +430,6 @@ def set_bloc_pos(bloc_size, board_size):
 				found = True
 	return bloc_tuple_list
 
-
 def main():
 	size = random.randint(3,10)
 		#3
@@ -378,7 +442,6 @@ def main():
 	g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values)
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
-
 
 if __name__ == "__main__":
 	main()
