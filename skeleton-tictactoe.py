@@ -8,34 +8,25 @@ class Game:
 	HUMAN = 2
 	AI = 3
 	
-	def __init__(self, recommend = True, size = 3, blocs = 0):
-		self.initialize_game()
-		self.recommend = recommend
+	def __init__(self, recommend = True, size = 3, blocs = 0, bloc_pos = [], win_val = 3):
 		self.board_size = size
 		self.blocs = blocs
-
+		self.bloc_pos = bloc_pos
+		self.win_val = win_val
+		self.initialize_game()
+		self.recommend = recommend
+		self.depth = 0
+		
 	def initialize_game(self):
 		self.current_state = []
-		bloc_tuple_list = []
 
-		found = False
-		for i in range(0,self.blocs):
-			while not found:
-				bloc_x = random.randint(0,self.board_size)
-				bloc_y = random.randint(0,self.board_size)
-				new_bloc = (bloc_x, bloc_y)
-
-				if bloc_tuple_list.count(new_bloc) == 0:
-					bloc_tuple_list.append(new_bloc)
-					found = True
-
-		found = False
 		for x in range(0,self.board_size):
 			self.current_state.append([])
 			for y in range(0, self.board_size):
-				for z in bloc_tuple_list:
+				found = False
+				for z in self.bloc_pos:
 					if x == z[0] and y == z[1]:
-						self.current_state[x][y] = '<>'
+						self.current_state[x].append('<>')
 						found = True
 				if not found:
 					self.current_state[x].append('.')
@@ -44,9 +35,9 @@ class Game:
 
 	def draw_board(self):
 		print()
-		for y in range(0, self.board_size):
-			for x in range(0, self.board_size):
-				print(F'{self.current_state[x][y]}', end="")
+		for x in range(0, self.board_size):
+			for y in range(0, self.board_size):
+				print(F'{self.current_state[x][y]}', end="\t")
 			print()
 		print()
 		
@@ -59,28 +50,137 @@ class Game:
 			return True
 
 	def is_end(self):
-		# Vertical win
-		for i in range(0, self.board_size):
-			if (self.current_state[0][i] != '.' and
-				self.current_state[0][i] == self.current_state[1][i] and
-				self.current_state[1][i] == self.current_state[2][i]):
-				return self.current_state[0][i]
-		# Horizontal win
-		for i in range(0, self.board_size):
-			if (self.current_state[i] == ['X', 'X', 'X']):
-				return 'X'
-			elif (self.current_state[i] == ['O', 'O', 'O']):
-				return 'O'
-		# Main diagonal win
-		if (self.current_state[0][0] != '.' and
-			self.current_state[0][0] == self.current_state[1][1] and
-			self.current_state[0][0] == self.current_state[2][2]):
-			return self.current_state[0][0]
-		# Second diagonal win
-		if (self.current_state[0][2] != '.' and
-			self.current_state[0][2] == self.current_state[1][1] and
-			self.current_state[0][2] == self.current_state[2][0]):
-			return self.current_state[0][2]
+		if self.win_val == self.board_size:
+			# Vertical win
+			for i in range(0, self.board_size):
+				base_symbol = self.current_state[0][i]
+				win = False
+				for j in range(1, self.board_size):
+					if (self.current_state[j][i] == base_symbol and
+						base_symbol != '.' and
+						base_symbol != '<>'):
+						win = True
+					else:
+						win = False
+						break
+				if win:
+					return base_symbol
+			# Horizontal win
+			for i in range(0, self.board_size):
+				if self.current_state[i].count('X') == self.board_size:
+					return 'X'
+				elif self.current_state[i].count('O') == self.board_size:
+					return 'O'
+			# Main diagonal win
+			corner_symbol = self.current_state[0][0]
+			win = False
+			for i in range(1, self.board_size):
+				if (self.current_state[i][i] == corner_symbol and
+					corner_symbol != '.' and
+					corner_symbol != '<>'):
+					win = True
+				else:
+					win = False
+					break
+			if win:
+				return corner_symbol
+			# Second diagonal win
+			corner_symbol = self.current_state[0][self.board_size-1]
+			win = False
+			for i in range(1,self.board_size):
+				for j in range(self.board_size-2,0):
+					if (self.current_state[i][j] == corner_symbol and
+						corner_symbol != '.' and
+						corner_symbol != '<>'):
+						win = True
+					else:
+						win = False
+						break
+			if win:
+				return corner_symbol
+		else:
+			#Vertical
+			win = False
+			for i in range(0, self.board_size):
+				for j in range(0, self.board_size):
+					current = self.current_state[i][j]
+					win = False
+					if i+1 < self.board_size and i+self.win_val < self.board_size:
+						for x in range(i+1, i+self.win_val+1):
+							if ((self.board_size - 1 - i) >= self.win_val and
+								self.current_state[x][j] == current and
+								current != '.' and
+								current != '<>'):
+								win = True
+							else:
+								win = False
+								break
+						if win:
+							print("VERT")
+							return current
+
+			#Horizontal
+			win = False
+			for i in range(0, self.board_size):
+				for j in range(0, self.board_size):
+					current = self.current_state[i][j]
+					if j + 1 < self.board_size and j+self.win_val < self.board_size:
+						for x in range(j+1, j+self.win_val+1):
+							if ((self.board_size - 1 - j) >= self.win_val and
+								self.current_state[i][x] == current and
+								current != '.' and
+								current != '<>'):
+								win = True
+							else:
+								win = False
+								break
+						if win:
+							print("HORI")
+							return current
+
+			#Main diagonal
+			win = False
+			for i in range(0, self.board_size):
+				for j in range(0, self.board_size):
+					current = self.current_state[i][j]
+					if i+1 < self.board_size and i+self.win_val < self.board_size and j+1 < self.board_size:
+						index = j
+						for x in range(i+1, i+self.win_val+1):
+							if index + 1 < self.board_size:
+								index += 1
+							if ((self.board_size - 1 - i) >= self.win_val and
+								self.current_state[x][index] == current and
+								current != '.' and
+								current != '<>'):
+								win = True
+							else:
+								win = False
+								break
+						if win:
+							print("DIAG 1")
+							return current
+			#Other diagonal
+			win = False
+			for i in range(0, self.board_size):
+				for j in range(self.board_size-1, -1):
+					current = self.current_state[i][j]
+					if i+1 < self.board_size and i+self.win_val < self.board_size and j-1 >= 0:
+						index = j
+						for x in range(i+1, i+self.win_val+1):
+							if index - 1 > 0:
+								index -= 1
+							if ((self.board_size - 1 - i) >= self.win_val and
+								self.current_state[x][index] == current and
+								current != '.' and
+								current != '<>'):
+								win = True
+							else:
+								win = False
+								break
+						if win:
+							print("DIAG 2")
+							return current
+		#print("here")
 		# Is whole board full?
 		for i in range(0, self.board_size):
 			for j in range(0, self.board_size):
@@ -134,10 +234,13 @@ class Game:
 		y = None
 		result = self.is_end()
 		if result == 'X':
+			print('X minmax')
 			return (-1, x, y)
 		elif result == 'O':
+			print('O minmax')
 			return (1, x, y)
 		elif result == '.':
+			print('. minmax')
 			return (0, x, y)
 		for i in range(0, self.board_size):
 			for j in range(0, self.board_size):
@@ -166,6 +269,7 @@ class Game:
 		# 0  - a tie
 		# 1  - loss for 'X'
 		# We're initially setting it to 2 or -2 as worse than the worst case:
+		self.depth +=1
 		value = 2
 		if max:
 			value = -2
@@ -173,10 +277,13 @@ class Game:
 		y = None
 		result = self.is_end()
 		if result == 'X':
+			print('1 X '  + str(self.depth))
 			return (-1, x, y)
 		elif result == 'O':
+			print('2 O ' + str(self.depth))
 			return (1, x, y)
 		elif result == '.':
+			print('3 . ' + str(self.depth))
 			return (0, x, y)
 		for i in range(0, self.board_size):
 			for j in range(0, self.board_size):
@@ -242,13 +349,36 @@ class Game:
 			self.current_state[x][y] = self.player_turn
 			self.switch_player()
 
+
+def set_bloc_pos(bloc_size, board_size):
+	bloc_tuple_list = []
+
+	for i in range(0, bloc_size):
+		found = False
+		while not found:
+			bloc_x = random.randint(0, board_size - 1)
+			bloc_y = random.randint(0, board_size - 1)
+			new_bloc = (bloc_x, bloc_y)
+
+			if bloc_tuple_list.count(new_bloc) == 0:
+				bloc_tuple_list.append(new_bloc)
+				found = True
+	return bloc_tuple_list
+
+
 def main():
 	size = random.randint(3,10)
+		#3
 	blocs = random.randint(0,2*size)
-
-	g = Game(recommend=True, size=size, blocs=blocs)
+		#0
+	bloc_positions = set_bloc_pos(blocs,size)
+		#[]
+	winning_values = random.randint(3,size)
+		#3
+	g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values)
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
+
 
 if __name__ == "__main__":
 	main()
