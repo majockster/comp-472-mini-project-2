@@ -122,7 +122,7 @@ class Game:
 						if ((self.board_size - j) < self.win_val and
 							self.current_state[i][x] == current and
 							current != '.' and
-							current != '<>'):
+							current != '< >'):
 							win = True
 						else:
 							win = False
@@ -138,6 +138,34 @@ class Game:
 					return None
 		# It's a tie!
 		return '.'
+
+	def heuristic1(self):
+		e1 = self.win_val;
+		for i in range(0, self.board_size):
+			for j in range(0, self.board_size):
+				if(self.current_state[i][j] == ''):
+					current = self.current_state[i][j]
+		# checking horizontally
+		for i in range(0, self.board_size):
+			for j in range(0, self.board_size - 1):
+				if(self.current_state[i][j] == self.current_state[i][j+1]):
+					e1 -= 1
+				else:
+					e1 = 0
+		# checking vertically
+		for i in range(0, self.board_size):
+			for j in range(0, self.board_size - 1):
+				if (self.current_state[j][i] == self.current_state[j + 1][i]):
+					e1 -= 1
+				else:
+					e1 = 0
+		# checking diagonally
+		for i in range(0, self.board_size - 1):
+			for j in range(0, self.board_size - 1):
+				if (self.current_state[i][j] == self.current_state[i + 1][j + 1]):
+					e1 -= 1
+		return e1
+
 
 	def check_end(self):
 		self.result = self.is_end()
