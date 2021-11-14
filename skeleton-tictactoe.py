@@ -223,11 +223,11 @@ class Game:
 	#Implementing e1
 
 	def e1 (self):
-		#Check if there are no obstacles in the way
-		#Starting with horizontal
-		#Count the open rows,columns,diagonals
+	   #Check if there are no obstacles in the way
+	   #Starting with horizontal
+	   #Count the open rows,columns,diagonals
 
-		 #For horizontal
+	   #For horizontal
 	   numX = 0
 	   numO = 0
 	   for i in range(0, self.board_size):
@@ -236,7 +236,7 @@ class Game:
 		   elif self.player_turn == 'O' and self.current_state[i].count('X') == 0 and self.current_state[i].count('<>') == 0:
 			   numO +=1
 
-		#For vertical
+	   #For vertical
 	   for i in range(0, self.board_size):
 		   openX = False
 		   openO = False
@@ -253,7 +253,7 @@ class Game:
 		   elif openO:
 			   numO +=1
 
-		#For main diagonal
+	   #For main diagonal
 	   openX = False
 	   openO = False
 	   for i in range(1, self.board_size):
@@ -415,7 +415,6 @@ class Game:
 			self.current_state[x][y] = self.player_turn
 			self.switch_player()
 
-
 def set_bloc_pos(bloc_size, board_size):
 	bloc_tuple_list = []
 
@@ -431,7 +430,6 @@ def set_bloc_pos(bloc_size, board_size):
 				found = True
 	return bloc_tuple_list
 
-
 def main():
 	size = random.randint(3,10)
 		#3
@@ -444,7 +442,6 @@ def main():
 	g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values)
 	g.play(algo=Game.ALPHABETA,player_x=Game.AI,player_o=Game.AI)
 	g.play(algo=Game.MINIMAX,player_x=Game.AI,player_o=Game.HUMAN)
-
 
 if __name__ == "__main__":
 	main()
