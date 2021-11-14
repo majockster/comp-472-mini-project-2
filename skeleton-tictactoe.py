@@ -231,32 +231,29 @@ class Game:
 	   numX = 0
 	   numO = 0
 	   for i in range(0, self.board_size):
-	   		if self.player_turn == 'X' and self.current_state[i].count('O') == 0 and self.current_state[i].count('<>') == 0:
-				numX +=1
-			elif self.player_turn == 'O' and self.current_state[i].count('X') == 0 and self.current_state[i].count('<>') == 0:
-				numO +=1
+		   if self.player_turn == 'X' and self.current_state[i].count('O') == 0 and self.current_state[i].count('<>') == 0:
+			   numX +=1
+		   elif self.player_turn == 'O' and self.current_state[i].count('X') == 0 and self.current_state[i].count('<>') == 0:
+			   numO +=1
 
 		#For vertical
 	   for i in range(0, self.board_size):
-
-			openX = False
-			openO = False
-			for j in range(0, self.board_size):
-
-				if self.player_turn == 'X' and ( self.current_state[j][i] == '.' or self.current_state[j][i] == 'X' ):
-					openX=True
-				elif self.player_turn == 'O' and ( self.current_state[j][i] == '.' or self.current_state[j][i] == 'O' ):
-					openO=True
-				else:
-					openX = False
-					openO = False
-			if openX:
-					numX +=1
-			elif openO:
-					numO +=1
+		   openX = False
+		   openO = False
+		   for j in range(0, self.board_size):
+			   if self.player_turn == 'X' and ( self.current_state[j][i] == '.' or self.current_state[j][i] == 'X' ):
+				   openX=True
+			   elif self.player_turn == 'O' and ( self.current_state[j][i] == '.' or self.current_state[j][i] == 'O' ):
+				   openO=True
+			   else:
+				   openX = False
+				   openO = False
+		   if openX:
+			   numX +=1
+		   elif openO:
+			   numO +=1
 
 		#For main diagonal
-
 	   openX = False
 	   openO = False
 	   for i in range(1, self.board_size):
@@ -268,28 +265,25 @@ class Game:
 			   openX = False
 			   openO = False
 	   if openX:
-		  numX += 1
+		   numX += 1
 	   elif openO:
-		  numO += 1
-
-
+		   numO += 1
+	   #Other diagonal
 	   openX = False
 	   openO = False
 	   for i in range(0, self.board_size):
-			for j in range(self.board_size - 1, -1):
-
-				if self.player_turn == 'X' and (self.current_state[i][j] == '.' or self.current_state[i][j] == 'X'):
-					openX = True
-				elif self.player_turn == 'O' and (self.current_state[i][j] == '.' or self.current_state[i][j] == 'O'):
-					openO = True
-				else:
-					openX = False
-					openO = False
-			if openX:
-				numX += 1
-			elif openO:
-				numO += 1
-
+		   for j in range(self.board_size - 1, -1):
+			   if self.player_turn == 'X' and (self.current_state[i][j] == '.' or self.current_state[i][j] == 'X'):
+				   openX = True
+			   elif self.player_turn == 'O' and (self.current_state[i][j] == '.' or self.current_state[i][j] == 'O'):
+				   openO = True
+			   else:
+				   openX = False
+				   openO = False
+		   if openX:
+			   numX += 1
+		   elif openO:
+			   numO += 1
 	   return (numX - numO)
 
 	def minimax(self, max=False):
