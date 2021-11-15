@@ -1,6 +1,7 @@
 # based on code from https://stackabuse.com/minimax-and-alpha-beta-pruning-in-python
 import random
 import time
+import numpy as np
 
 
 class Game:
@@ -16,6 +17,7 @@ class Game:
         self.win_val = win_val
         self.initialize_game()
         self.recommend = recommend
+        self.depth = 0
 
     def initialize_game(self):
         self.current_state = []
@@ -62,6 +64,7 @@ class Game:
                         win = True
                     else:
                         win = False
+                        break
                 if win:
                     return base_symbol
             # Horizontal win
@@ -74,19 +77,19 @@ class Game:
             corner_symbol = self.current_state[0][0]
             win = False
             for i in range(1, self.board_size):
-                # win = False
                 if (self.current_state[i][i] == corner_symbol and
                         corner_symbol != '.' and
                         corner_symbol != '<>'):
                     win = True
                 else:
                     win = False
+                    break
             if win:
                 return corner_symbol
             # Second diagonal win
             corner_symbol = self.current_state[0][self.board_size - 1]
             win = False
-            for i in range(0, self.board_size):
+            for i in range(1, self.board_size):
                 for j in range(self.board_size - 2, 0):
                     if (self.current_state[i][j] == corner_symbol and
                             corner_symbol != '.' and
@@ -94,6 +97,7 @@ class Game:
                         win = True
                     else:
                         win = False
+                        break
             if win:
                 return corner_symbol
         else:
@@ -103,34 +107,82 @@ class Game:
                 for j in range(0, self.board_size):
                     current = self.current_state[i][j]
                     win = False
-                    for x in range(j, self.win_val):
-                        if ((self.board_size - i) < self.win_val and
-                                self.current_state[x][j] == current and
-                                current != '.' and
-                                current != '<>'):
-                            win = True
-                        else:
-                            win = False
-                    if win:
-                        return current
+                    if i + 1 < self.board_size and i + self.win_val < self.board_size:
+                        for x in range(i + 1, i + self.win_val + 1):
+                            if ((self.board_size - 1 - i) >= self.win_val and
+                                    self.current_state[x][j] == current and
+                                    current != '.' and
+                                    current != '<>'):
+                                win = True
+                            else:
+                                win = False
+                                break
+                        if win:
+                            print("VERT")
+                            return current
 
             # Horizontal
             win = False
             for i in range(0, self.board_size):
                 for j in range(0, self.board_size):
                     current = self.current_state[i][j]
-                    for x in range(j, self.win_val):
-                        if ((self.board_size - j) < self.win_val and
-                                self.current_state[i][x] == current and
-                                current != '.' and
-                                current != '< >'):
-                            win = True
-                        else:
-                            win = False
-                    if win:
-                        return current
-            # for j in range(0,self.win_val):
+                    if j + 1 < self.board_size and j + self.win_val < self.board_size:
+                        for x in range(j + 1, j + self.win_val + 1):
+                            if ((self.board_size - 1 - j) >= self.win_val and
+                                    self.current_state[i][x] == current and
+                                    current != '.' and
+                                    current != '<>'):
+                                win = True
+                            else:
+                                win = False
+                                break
+                        if win:
+                            print("HORI")
+                            return current
 
+            # Main diagonal
+            win = False
+            for i in range(0, self.board_size):
+                for j in range(0, self.board_size):
+                    current = self.current_state[i][j]
+                    if i + 1 < self.board_size and i + self.win_val < self.board_size and j + 1 < self.board_size:
+                        index = j
+                        for x in range(i + 1, i + self.win_val + 1):
+                            if index + 1 < self.board_size:
+                                index += 1
+                            if ((self.board_size - 1 - i) >= self.win_val and
+                                    self.current_state[x][index] == current and
+                                    current != '.' and
+                                    current != '<>'):
+                                win = True
+                            else:
+                                win = False
+                                break
+                        if win:
+                            print("DIAG 1")
+                            return current
+            # Other diagonal
+            win = False
+            for i in range(0, self.board_size):
+                for j in range(self.board_size - 1, -1):
+                    current = self.current_state[i][j]
+                    if i + 1 < self.board_size and i + self.win_val < self.board_size and j - 1 >= 0:
+                        index = j
+                        for x in range(i + 1, i + self.win_val + 1):
+                            if index - 1 > 0:
+                                index -= 1
+                            if ((self.board_size - 1 - i) >= self.win_val and
+                                    self.current_state[x][index] == current and
+                                    current != '.' and
+                                    current != '<>'):
+                                win = True
+                            else:
+                                win = False
+                                break
+                        if win:
+                            print("DIAG 2")
+                            return current
+        # print("here")
         # Is whole board full?
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
@@ -139,44 +191,6 @@ class Game:
                     return None
         # It's a tie!
         return '.'
-
-    def heuristic1_max(self):
-        e1 = self.win_val;
-        h = self.win_val;
-        for i in range(0, self.board_size):
-            for j in range(0, self.board_size):
-                if self.current_state[i][j] == '':
-                    current_position_x = i
-                    current_position_y = j
-
-        return e1
-
-    def check_heuristic1_max_horizontal(self, current_position_x, current_position_y):
-		e1 = 4
-        # checking horizontally
-        for i in range(0, self.board_size - 1):
-            if self.current_state[current_position_x][i] == self.current_state[current_position_y][i + 1] == "X":
-                e1 -= 1
-            else:
-                e1 = 0
-		return e1
-
-	def check_heuristic1_max_vertical(self, current_position_x, current_position_y):
-        # checking vertically
-        for i in range(0, self.board_size - 1):
-            if self.current_state[i][current_position_y] == self.current_state[i + 1][current_position_y] == "X":
-                e1 -= 1
-            else:
-                e1 = 0
-		return e1
-
-	def check_heuristical1_max_diagonal(self, current_position_x, current_position_y):
-        # checking diagonally
-        for i in range(0, self.board_size - 1):
-            for j in range(0, self.board_size - 1):
-                if (self.current_state[i][j] == self.current_state[i + 1][j + 1]):
-                    e1 -= 1
-		return e1
 
     def check_end(self):
         self.result = self.is_end()
@@ -190,6 +204,94 @@ class Game:
                 print("It's a tie!")
             self.initialize_game()
         return self.result
+
+    def heuristic2(self):
+        h = 0
+
+        # check h in each row
+        for i in range(0, self.board_size):
+            num_x = 0
+            num_o = 0
+            for j in range(0, self.board_size):
+                if self.current_state[i][j] == "X":
+                    num_x += 1
+                    if self.win_val >= num_x:
+                        h += self.win_val - (self.win_val - num_x)
+                    else:
+                        num_x = self.win_val
+                        h += self.win_val - (self.win_val - num_x)
+                if self.current_state[i][j] == "O":
+                    num_o += 1
+                    if self.win_val >= num_o:
+                        h -= self.win_val - (self.win_val - num_o)
+                    else:
+                        num_o = self.win_val
+                        h -= self.win_val - (self.win_val - num_o)
+        # check columns
+        for j in range(0, self.board_size):
+            num_x = 0
+            num_o = 0
+            for i in range(0, self.board_size):
+                if self.current_state[i][j] == "X":
+                    num_x += 1
+                    if self.win_val >= num_x:
+                        h += self.win_val - (self.win_val - num_x)
+                    else:
+                        num_x = self.win_val
+                        h += self.win_val - (self.win_val - num_x)
+                if self.current_state[i][j] == "O":
+                    num_o += 1
+                    if self.win_val >= num_o:
+                        h -= self.win_val - (self.win_val - num_o)
+                    else:
+                        num_o = self.win_val
+                        h -= self.win_val - (self.win_val - num_o)
+        # check right-tilt diagonals
+
+        for i in range(-(self.board_size - 2), self.board_size - 1):
+            count_array = np.diag(self, k=i)
+            num_x = 0
+            num_o = 0
+
+            for j in range(0, len(count_array)):
+                if count_array[j] == "X":
+                    num_x += 1
+                    if self.win_val >= num_x:
+                        h += self.win_val - (self.win_val - num_x)
+                    else:
+                        num_x = self.win_val
+                        h += self.win_val - (self.win_val - num_x)
+                if count_array[j] == "O":
+                    num_o += 1
+                    if self.win_val >= num_o:
+                        h -= self.win_val - (self.win_val - num_o)
+                    else:
+                        num_o = self.win_val
+                        h -= self.win_val - (self.win_val - num_o)
+
+        #checking left-tilt diagonals
+        for i in range(-(self.board_size - 2), self.board_size - 1):
+            count_array = np.diag((np.fliplr(self)), k=i)
+            num_x = 0
+            num_o = 0
+
+            for j in range(0, len(count_array)):
+                if count_array[j] == "X":
+                    num_x += 1
+                    if self.win_val >= num_x:
+                        h += self.win_val - (self.win_val - num_x)
+                    else:
+                        num_x = self.win_val
+                        h += self.win_val - (self.win_val - num_x)
+                if count_array[j] == "O":
+                    num_o += 1
+                    if self.win_val >= num_o:
+                        h -= self.win_val - (self.win_val - num_o)
+                    else:
+                        num_o = self.win_val
+                        h -= self.win_val - (self.win_val - num_o)
+
+        return h
 
     def input_move(self):
         while True:
@@ -222,10 +324,13 @@ class Game:
         y = None
         result = self.is_end()
         if result == 'X':
+            print('X minmax')
             return (-1, x, y)
         elif result == 'O':
+            print('O minmax')
             return (1, x, y)
         elif result == '.':
+            print('. minmax')
             return (0, x, y)
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
@@ -254,6 +359,7 @@ class Game:
         # 0  - a tie
         # 1  - loss for 'X'
         # We're initially setting it to 2 or -2 as worse than the worst case:
+        self.depth += 1
         value = 2
         if max:
             value = -2
@@ -261,10 +367,13 @@ class Game:
         y = None
         result = self.is_end()
         if result == 'X':
+            print('1 X ' + str(self.depth))
             return (-1, x, y)
         elif result == 'O':
+            print('2 O ' + str(self.depth))
             return (1, x, y)
         elif result == '.':
+            print('3 . ' + str(self.depth))
             return (0, x, y)
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
@@ -350,10 +459,13 @@ def set_bloc_pos(bloc_size, board_size):
 
 def main():
     size = random.randint(3, 10)
+    # 3
     blocs = random.randint(0, 2 * size)
+    # 0
     bloc_positions = set_bloc_pos(blocs, size)
+    # []
     winning_values = random.randint(3, size)
-
+    # 3
     g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values)
     g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
     g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
