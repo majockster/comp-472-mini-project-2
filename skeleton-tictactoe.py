@@ -1,4 +1,3 @@
-# based on code from https://stackabuse.com/minimax-and-alpha-beta-pruning-in-python
 import random
 import time
 import numpy as np
@@ -37,6 +36,7 @@ class Game:
         self.player_turn = 'X'
 
     def draw_board(self):
+        self.depth = 0
         print()
         for x in range(0, self.board_size):
             for y in range(0, self.board_size):
@@ -218,6 +218,7 @@ class Game:
                 print('The move is not valid! Try again.')
 
     def switch_player(self):
+        self.depth = 0
         if self.player_turn == 'X':
             self.player_turn = 'O'
         elif self.player_turn == 'O':
@@ -241,75 +242,38 @@ class Game:
                 numO += 1
 
         # For vertical
+        column_values = []
         for i in range(0, self.board_size):
-            openX = False
-            openO = False
+            new_col = []
             for j in range(0, self.board_size):
-                if self.current_state[j][i] == 'X':
-                    openX = True
-                elif self.current_state[j][i] == 'O':
-                    openO = True
-                if self.current_state[j][i] == '.':
-                    openX = True
-                    openO = True
-                else:
-                    openX = False
-                    openO = False
-                    break
-            if openX:
-                numX += 1
-            if openO:
+                new_col.append(self.current_state[j][i])
+            column_values.append(new_col)
+
+        for x in range(0, self.board_size):
+            if column_values[x].count('X') == 0 and column_values[x].count('<>') == 0:
                 numO += 1
+            if column_values[x].count('O') == 0 and column_values[x].count('<>') == 0:
+                numX += 1
 
         # For main diagonal
-        openX = False
-        openO = False
-        for i in range(0, self.board_size):
-            if self.current_state[i][i] == 'X':
-                openX = True
-            elif self.current_state[i][i] == 'O':
-                openO = True
-            if self.current_state[i][i] == '.':
-                openX = True
-                openO = True
-            else:
-                openX = False
-                openO = False
-                break
-        if openX:
-            numX += 1
-        if openO:
+        main_diag_values = np.diag(np.fliplr(self.current_state), k=0)
+        if np.count_nonzero(main_diag_values == 'X') == 0 and np.count_nonzero(main_diag_values == '<>') == 0:
             numO += 1
+        if np.count_nonzero(main_diag_values == 'O') == 0 and np.count_nonzero(main_diag_values == '<>') == 0:
+            numX += 1
+
         # Other diagonal
-        openX = False
-        openO = False
-        index = self.board_size - 1
-        for i in range(0, self.board_size):
-            for j in range(index, -1):
-                if self.current_state[i][j] == 'X':
-                    openX = True
-                elif self.current_state[i][j] == 'O':
-                    openO = True
-                if self.current_state[i][j] == '.':
-                    openX = True
-                    openO = True
-                if openO or openX:
-                    index = j
-                    break
-                else:
-                    openX = False
-                    openO = False
-                    break
-        if openX:
-            numX += 1
-        if openO:
+        other_diag_values = np.diag(self.current_state, k=0)
+        if np.count_nonzero(other_diag_values == 'X') == 0 and np.count_nonzero(other_diag_values == '<>') == 0:
             numO += 1
+        if np.count_nonzero(other_diag_values == 'O') == 0 and np.count_nonzero(other_diag_values == '<>') == 0:
+            numX += 1
+
         print(f'numX({numX}) - numO({numO})')
         return ((numX - numO) * self.depth)
 
-    def heuristic2(self):
+    def e2(self):
         h = 0
-
         # check h in each row
         for i in range(0, self.board_size):
             num_x = 0
@@ -317,83 +281,53 @@ class Game:
             for j in range(0, self.board_size):
                 if self.current_state[i][j] == "X":
                     num_x += 1
-                    if self.win_val >= num_x:
-                        h += self.win_val - (self.win_val - num_x)
-                    else:
-                        num_x = self.win_val
-                        h += self.win_val - (self.win_val - num_x)
                 if self.current_state[i][j] == "O":
                     num_o += 1
-                    if self.win_val >= num_o:
-                        h -= self.win_val - (self.win_val - num_o)
-                    else:
-                        num_o = self.win_val
-                        h -= self.win_val - (self.win_val - num_o)
-            # check columns
-            for j in range(0, self.board_size):
-                num_x = 0
-                num_o = 0
-                for i in range(0, self.board_size):
-                    if self.current_state[i][j] == "X":
-                        num_x += 1
-                        if self.win_val >= num_x:
-                            h += self.win_val - (self.win_val - num_x)
-                        else:
-                            num_x = self.win_val
-                            h += self.win_val - (self.win_val - num_x)
-                    if self.current_state[i][j] == "O":
-                        num_o += 1
-                        if self.win_val >= num_o:
-                            h -= self.win_val - (self.win_val - num_o)
-                        else:
-                            num_o = self.win_val
-                            h -= self.win_val - (self.win_val - num_o)
-            # check right-tilt diagonals
+            h += num_x * self.win_val
+            h -= num_o * self.win_val
 
-            for i in range(-(self.board_size - 2), self.board_size - 1):
-                count_array = np.diag(self, k=i)
-                num_x = 0
-                num_o = 0
+        # check columns
+        for j in range(0, self.board_size):
+            num_x = 0
+            num_o = 0
+            for i in range(0, self.board_size):
+                if self.current_state[i][j] == "X":
+                    num_x += 1
+                if self.current_state[i][j] == "O":
+                    num_o += 1
+            h += num_x * self.win_val
+            h -= num_o * self.win_val
+        # # check right-tilt diagonals
 
-                for j in range(0, len(count_array)):
-                    if count_array[j] == "X":
-                        num_x += 1
-                        if self.win_val >= num_x:
-                            h += self.win_val - (self.win_val - num_x)
-                        else:
-                            num_x = self.win_val
-                            h += self.win_val - (self.win_val - num_x)
-                    if count_array[j] == "O":
-                        num_o += 1
-                        if self.win_val >= num_o:
-                            h -= self.win_val - (self.win_val - num_o)
-                        else:
-                            num_o = self.win_val
-                            h -= self.win_val - (self.win_val - num_o)
+        for i in range(-(self.board_size - 1), self.board_size):
+            count_array = np.diag(self.current_state, k=i)
+            num_x = 0
+            num_o = 0
 
-            # checking left-tilt diagonals
-            for i in range(-(self.board_size - 2), self.board_size - 1):
-                count_array = np.diag((np.fliplr(self)), k=i)
-                num_x = 0
-                num_o = 0
+            for j in range(0, len(count_array)):
+                if count_array[j] == "X":
+                    num_x += 1
 
-                for j in range(0, len(count_array)):
-                    if count_array[j] == "X":
-                        num_x += 1
-                        if self.win_val >= num_x:
-                            h += self.win_val - (self.win_val - num_x)
-                        else:
-                            num_x = self.win_val
-                            h += self.win_val - (self.win_val - num_x)
-                    if count_array[j] == "O":
-                        num_o += 1
-                        if self.win_val >= num_o:
-                            h -= self.win_val - (self.win_val - num_o)
-                        else:
-                            num_o = self.win_val
-                            h -= self.win_val - (self.win_val - num_o)
+                if count_array[j] == "O":
+                    num_o += 1
+            h += num_x * self.win_val
+            h -= num_o * self.win_val
 
-            return h
+        # # checking left-tilt diagonals
+        for i in range(-(self.board_size - 1), self.board_size):
+            count_array = np.diag((np.fliplr(self.current_state)), k=i)
+            num_x = 0
+            num_o = 0
+
+            for j in range(0, len(count_array)):
+                if count_array[j] == "X":
+                    num_x += 1
+                if count_array[j] == "O":
+                    num_o += 1
+            h += num_x * self.win_val
+            h -= num_o * self.win_val
+
+        return h
 
     def minimax(self, max=False):
         # Minimizing for 'X' and maximizing for 'O'
@@ -408,8 +342,6 @@ class Game:
         x = None
         y = None
         result = self.is_end()
-        if self.depth < self.d1 or self.depth < self.d2:
-            self.depth += 1
 
         if result == 'X':
             print('X minmax')
@@ -420,10 +352,10 @@ class Game:
         elif result == '.':
             print('. minmax')
             return (0, x, y)
-        elif max and self.depth >= self.d1:
+        elif self.player_turn == 'X' and self.depth >= self.d1:
             print(f"here x {x, y}, d1 {self.d1}")
             return (self.e1(), x, y)
-        elif not max and self.depth >= self.d2:
+        elif self.player_turn == 'O' and self.depth >= self.d2:
             print(f"here o {x, y}, d2 {self.d2}")
             return (self.e1(), x, y)
         for i in range(0, self.board_size):
@@ -444,6 +376,10 @@ class Game:
                             x = i
                             y = j
                     self.current_state[i][j] = '.'
+
+        if self.depth < self.d1 or self.depth < self.d2:
+            self.depth += 1
+
         return (value, x, y)
 
     def alphabeta(self, alpha=-2, beta=2, max=False):
@@ -459,8 +395,8 @@ class Game:
         x = None
         y = None
         result = self.is_end()
-        if self.depth < self.d1 or self.depth < self.d2:
-            self.depth += 1
+        # if self.depth < self.d1 or self.depth < self.d2:
+        #     self.depth += 1
 
         if result == 'X':
             print('1 X ' + str(self.depth))
@@ -471,14 +407,14 @@ class Game:
         elif result == '.':
             print('3 . ' + str(self.depth))
             return (0, x, y)
-        elif max and self.depth >= self.d1:
+        elif self.player_turn == 'X' and self.depth >= self.d1:
             print(f"AB x {x, y}, d1 {self.d1}")
-            print(f"e1 = {self.e1()}")
-            return (self.e1(), x, y)
-        elif not max and self.depth >= self.d2:
+            #print(f"e2 = {self.e1()}")
+            return (self.e2(), x, y)
+        elif self.player_turn == 'O' and self.depth >= self.d2:
             print(f"AB o {x, y}, d2 {self.d2}")
-            print(f"e1 = {self.e1()}")
-            return (self.e1(), x, y)
+            #print(f"e1 = {self.e1()}")
+            return (self.e2(), x, y)
 
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
@@ -499,6 +435,10 @@ class Game:
                             value = v
                             x = i
                             y = j
+
+                    # if self.depth < self.d1 or self.depth < self.d2:
+                    #     self.depth += 1
+
                     self.current_state[i][j] = '.'
                     if max:
                         if value >= beta:
@@ -510,6 +450,10 @@ class Game:
                             return (value, x, y)
                         if value < beta:
                             beta = value
+
+        if self.depth < self.d1 or self.depth < self.d2:
+            self.depth += 1
+
         return (value, x, y)
 
     def play(self, algo=None, player_x=None, player_o=None):
@@ -545,6 +489,7 @@ class Game:
                 print(F'Evaluation time: {round(end - start, 7)}s')
                 print(
                     F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
+            print(f'self depth {self.depth} and d1 {self.d1}')
             self.current_state[x][y] = self.player_turn
             self.switch_player()
 
@@ -579,7 +524,7 @@ def main():
     g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values, d1=max_depth_1,
              d2=max_depth_2)
     g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
-    g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
+    #g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
 
 
 if __name__ == "__main__":
