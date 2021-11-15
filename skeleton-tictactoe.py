@@ -268,6 +268,7 @@ class Game:
                     else:
                         num_o = self.win_val
                         h -= self.win_val - (self.win_val - num_o)
+		
 
         #checking left-tilt diagonals
         for i in range(-(self.board_size - 2), self.board_size - 1):
