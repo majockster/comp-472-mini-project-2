@@ -235,13 +235,27 @@ class Game:
         # For horizontal
         numX = 0
         numO = 0
+        h = 0
         for i in range(0, self.board_size):
-            if self.current_state[i].count('O') == 0 and self.current_state[i].count('<>') == 0:
-                numX += 1
-            if self.current_state[i].count('X') == 0 and self.current_state[i].count('<>') == 0:
-                numO += 1
+            if (self.current_state[i].count('X') > 0):
+                for j in range(0, self.board_size-1):
+                    if self.current_state[i][j] == 'X' and (self.current_state[i][j+1] == '.' or
+                                                            self.current_state[i][j+1] == 'X'):
+                        numX += 1
 
-        # For vertical
+                #+ self.current_state[i].count('.') - self.current_state[i].count('<>')
+            if (self.current_state[i].count('O') > 0):
+                for j in range(0, self.board_size-1):
+                    if self.current_state[i][j] == 'O' and (self.current_state[i][j+1] == '.' or
+                                                            self.current_state[i][j+1] == 'O'):
+                        numO += 1
+                #+ self.current_state[i].count('.') - self.current_state[i].count('<>')
+
+        h += numX * self.win_val
+        h -= numO * self.win_val
+        #print(f'h = {h}')
+
+        # # For vertical
         column_values = []
         for i in range(0, self.board_size):
             new_col = []
@@ -249,28 +263,67 @@ class Game:
                 new_col.append(self.current_state[j][i])
             column_values.append(new_col)
 
+        numX = 0
+        numO = 0
         for x in range(0, self.board_size):
-            if column_values[x].count('X') == 0 and column_values[x].count('<>') == 0:
-                numO += 1
-            if column_values[x].count('O') == 0 and column_values[x].count('<>') == 0:
-                numX += 1
+            if (column_values[x].count('O') > 0):
+                for j in range(0, self.board_size-1):
+                    if column_values[x][j] == 'O' and (column_values[x][j+1] == '.' or
+                                                       column_values[x][j+1] == 'O'):
+                        numO += 1
+                #+ column_values[x].count('.') - column_values[x].count('<>')
+            if (column_values[x].count('X') > 0):
+                for j in range(0, self.board_size-1):
+                    if column_values[x][j] == 'X' and (column_values[x][j+1] == '.' or
+                                                       column_values[x][j+1] == 'X'):
+                        numX += 1
+                #+ column_values[x].count('.') - column_values[x].count('<>')
 
+        h += numX * self.win_val
+        h -= numO * self.win_val
+
+        numX = 0
+        numO = 0
         # For main diagonal
         main_diag_values = np.diag(np.fliplr(self.current_state), k=0)
-        if np.count_nonzero(main_diag_values == 'X') == 0 and np.count_nonzero(main_diag_values == '<>') == 0:
-            numO += 1
-        if np.count_nonzero(main_diag_values == 'O') == 0 and np.count_nonzero(main_diag_values == '<>') == 0:
-            numX += 1
+        if np.count_nonzero(main_diag_values == 'O') > 0:
+            for i in range(0, self.board_size-1):
+                if main_diag_values[i] == 'O' and (main_diag_values[i+1] == '.' or
+                                                   main_diag_values[i+1] == 'O'):
+                    numO += 1
+            #+ np.count_nonzero(main_diag_values == '.') - np.count_nonzero(main_diag_values == '<>')
+        if np.count_nonzero(main_diag_values == 'X') > 0:
+            for i in range(0, self.board_size-1):
+                if main_diag_values[i] == 'X' and (main_diag_values[i+1] == '.' or
+                                                   main_diag_values[i+1] == 'X'):
+                    numX += 1
+            #+ np.count_nonzero(main_diag_values == '.') - np.count_nonzero(main_diag_values == '<>')
 
+        h += numX * self.win_val
+        h -= numO * self.win_val
+
+        numX = 0
+        numO = 0
         # Other diagonal
         other_diag_values = np.diag(self.current_state, k=0)
-        if np.count_nonzero(other_diag_values == 'X') == 0 and np.count_nonzero(other_diag_values == '<>') == 0:
-            numO += 1
-        if np.count_nonzero(other_diag_values == 'O') == 0 and np.count_nonzero(other_diag_values == '<>') == 0:
-            numX += 1
+        if np.count_nonzero(other_diag_values == 'O') > 0:
+            for i in range(0, self.board_size-1):
+                if other_diag_values[i] == 'O' and (other_diag_values[i+1] == '.' or
+                                                    other_diag_values[i+1] == 'O'):
+                    numO += 1
+            #+ np.count_nonzero(other_diag_values == '.') - np.count_nonzero(other_diag_values == '<>')
+        if np.count_nonzero(other_diag_values == 'X') > 0:
+            for i in range(0, self.board_size-1):
+                if other_diag_values[i] == 'X' and (other_diag_values[i+1] == '.' or
+                                                    other_diag_values[i+1] == 'X'):
+                    numX += 1
+            #+ np.count_nonzero(other_diag_values == '.') - np.count_nonzero(other_diag_values == '<>')
 
-        print(f'numX({numX}) - numO({numO})')
-        return ((numX - numO) * self.depth)
+        h += numX * self.win_val
+        h -= numO * self.win_val
+
+        #print(f'numX({numX}) - numO({numO})')
+        return h
 
     def e2(self):
         h = 0
@@ -377,7 +430,7 @@ class Game:
                             y = j
                     self.current_state[i][j] = '.'
 
-        if self.depth < self.d1 or self.depth < self.d2:
+        if (self.player_turn == 'X' and self.depth < self.d1) or (self.player_turn == 'O' and self.depth < self.d2):
             self.depth += 1
 
         return (value, x, y)
@@ -409,12 +462,12 @@ class Game:
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
             print(f"AB x {x, y}, d1 {self.d1}")
-            #print(f"e2 = {self.e1()}")
-            return (self.e2(), x, y)
+            print(f"e2 = {self.e1()}")
+            return (self.e1(), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
             print(f"AB o {x, y}, d2 {self.d2}")
             #print(f"e1 = {self.e1()}")
-            return (self.e2(), x, y)
+            return (self.e1(), x, y)
 
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
@@ -422,6 +475,7 @@ class Game:
                     if max:
                         self.current_state[i][j] = 'O'
                         (v, _, _) = self.alphabeta(alpha, beta, max=False)
+                        print(f'v1 AB {v}')
                         if v > value:
                             print(f'{v} > {value}')
                             value = v
@@ -430,6 +484,7 @@ class Game:
                     else:
                         self.current_state[i][j] = 'X'
                         (v, _, _) = self.alphabeta(alpha, beta, max=True)
+                        print(f'v2 AB {v}')
                         if v < value:
                             print(f'{v} < {value}')
                             value = v
@@ -451,7 +506,7 @@ class Game:
                         if value < beta:
                             beta = value
 
-        if self.depth < self.d1 or self.depth < self.d2:
+        if (self.player_turn == 'X' and self.depth < self.d1) or (self.player_turn == 'O' and self.depth < self.d2):
             self.depth += 1
 
         return (value, x, y)
