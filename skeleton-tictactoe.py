@@ -1,6 +1,7 @@
 # based on code from https://stackabuse.com/minimax-and-alpha-beta-pruning-in-python
 import random
 import time
+import numpy as np
 
 
 class Game:
@@ -306,6 +307,94 @@ class Game:
         print(f'numX({numX}) - numO({numO})')
         return ((numX - numO) * self.depth)
 
+    def heuristic2(self):
+        h = 0
+
+        # check h in each row
+        for i in range(0, self.board_size):
+            num_x = 0
+            num_o = 0
+            for j in range(0, self.board_size):
+                if self.current_state[i][j] == "X":
+                    num_x += 1
+                    if self.win_val >= num_x:
+                        h += self.win_val - (self.win_val - num_x)
+                    else:
+                        num_x = self.win_val
+                        h += self.win_val - (self.win_val - num_x)
+                if self.current_state[i][j] == "O":
+                    num_o += 1
+                    if self.win_val >= num_o:
+                        h -= self.win_val - (self.win_val - num_o)
+                    else:
+                        num_o = self.win_val
+                        h -= self.win_val - (self.win_val - num_o)
+            # check columns
+            for j in range(0, self.board_size):
+                num_x = 0
+                num_o = 0
+                for i in range(0, self.board_size):
+                    if self.current_state[i][j] == "X":
+                        num_x += 1
+                        if self.win_val >= num_x:
+                            h += self.win_val - (self.win_val - num_x)
+                        else:
+                            num_x = self.win_val
+                            h += self.win_val - (self.win_val - num_x)
+                    if self.current_state[i][j] == "O":
+                        num_o += 1
+                        if self.win_val >= num_o:
+                            h -= self.win_val - (self.win_val - num_o)
+                        else:
+                            num_o = self.win_val
+                            h -= self.win_val - (self.win_val - num_o)
+            # check right-tilt diagonals
+
+            for i in range(-(self.board_size - 2), self.board_size - 1):
+                count_array = np.diag(self, k=i)
+                num_x = 0
+                num_o = 0
+
+                for j in range(0, len(count_array)):
+                    if count_array[j] == "X":
+                        num_x += 1
+                        if self.win_val >= num_x:
+                            h += self.win_val - (self.win_val - num_x)
+                        else:
+                            num_x = self.win_val
+                            h += self.win_val - (self.win_val - num_x)
+                    if count_array[j] == "O":
+                        num_o += 1
+                        if self.win_val >= num_o:
+                            h -= self.win_val - (self.win_val - num_o)
+                        else:
+                            num_o = self.win_val
+                            h -= self.win_val - (self.win_val - num_o)
+
+            # checking left-tilt diagonals
+            for i in range(-(self.board_size - 2), self.board_size - 1):
+                count_array = np.diag((np.fliplr(self)), k=i)
+                num_x = 0
+                num_o = 0
+
+                for j in range(0, len(count_array)):
+                    if count_array[j] == "X":
+                        num_x += 1
+                        if self.win_val >= num_x:
+                            h += self.win_val - (self.win_val - num_x)
+                        else:
+                            num_x = self.win_val
+                            h += self.win_val - (self.win_val - num_x)
+                    if count_array[j] == "O":
+                        num_o += 1
+                        if self.win_val >= num_o:
+                            h -= self.win_val - (self.win_val - num_o)
+                        else:
+                            num_o = self.win_val
+                            h -= self.win_val - (self.win_val - num_o)
+
+            return h
+
     def minimax(self, max=False):
         # Minimizing for 'X' and maximizing for 'O'
         # Possible values are:
@@ -454,7 +543,8 @@ class Game:
                 (x, y) = self.input_move()
             if (self.player_turn == 'X' and player_x == self.AI) or (self.player_turn == 'O' and player_o == self.AI):
                 print(F'Evaluation time: {round(end - start, 7)}s')
-                print(F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
+                print(
+                    F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
             self.current_state[x][y] = self.player_turn
             self.switch_player()
 
