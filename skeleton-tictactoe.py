@@ -9,7 +9,7 @@ class Game:
     HUMAN = 2
     AI = 3
 
-    def __init__(self, recommend=True, size=3, blocs=0, bloc_pos=[], win_val=3, d1=3, d2=3):
+    def __init__(self, recommend=True, size=3, blocs=0, bloc_pos=[], win_val=3, time=3, d1=3, d2=3):
         self.board_size = size
         self.blocs = blocs
         self.bloc_pos = bloc_pos
@@ -18,6 +18,7 @@ class Game:
         self.recommend = recommend
         self.d1 = d1
         self.d2 = d2
+        self.time = time
 
     def initialize_game(self):
         self.current_state = []
@@ -120,7 +121,6 @@ class Game:
                                 win = False
                                 break
                         if win:
-                            print("VERT")
                             return current
 
             # Horizontal
@@ -139,7 +139,6 @@ class Game:
                                 win = False
                                 break
                         if win:
-                            print("HORI")
                             return current
 
             # Main diagonal
@@ -161,7 +160,6 @@ class Game:
                                 win = False
                                 break
                         if win:
-                            print("DIAG 1")
                             return current
             # Other diagonal
             win = False
@@ -182,7 +180,6 @@ class Game:
                                 win = False
                                 break
                         if win:
-                            print("DIAG 2")
                             return current
         # print("here")
         # Is whole board full?
@@ -381,19 +378,14 @@ class Game:
         result = self.is_end()
 
         if result == 'X':
-            print('X minmax')
             return (-1, x, y)
         elif result == 'O':
-            print('O minmax')
             return (1, x, y)
         elif result == '.':
-            print('. minmax')
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
-            print(f"here x {x, y}, d1 {self.d1}")
             return (self.e2(max=max), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
-            print(f"here o {x, y}, d2 {self.d2}")
             return (self.e2(max=max), x, y)
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
@@ -434,21 +426,14 @@ class Game:
         result = self.is_end()
 
         if result == 'X':
-            print('1 X ' + str(self.depth))
             return (-1, x, y)
         elif result == 'O':
-            print('2 O ' + str(self.depth))
             return (1, x, y)
         elif result == '.':
-            print('3 . ' + str(self.depth))
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
-            print(f"AB x {x, y}, d1 {self.d1}")
-            #print(f"e2 = {self.e2()}")
             return (self.e1(max=max), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
-            print(f"AB o {x, y}, d2 {self.d2}")
-            #print(f"e1 = {self.e1()}")
             return (self.e1(max=max), x, y)
 
         for i in range(0, self.board_size):
@@ -457,24 +442,17 @@ class Game:
                     if max:
                         self.current_state[i][j] = 'O'
                         (v, _, _) = self.alphabeta(alpha, beta, max=False)
-                        print(f'v1 AB {v} value1 AB {value}')
                         if v > value:
-                            print(f'{v} > {value}')
                             value = v
                             x = i
                             y = j
                     else:
                         self.current_state[i][j] = 'X'
                         (v, _, _) = self.alphabeta(alpha, beta, max=True)
-                        print(f'v2 AB {v} value2 AB {value}')
                         if v < value:
-                            print(f'{v} < {value}')
                             value = v
                             x = i
                             y = j
-
-                    # if self.depth < self.d1 or self.depth < self.d2:
-                    #     self.depth += 1
 
                     self.current_state[i][j] = '.'
                     if max:
@@ -553,6 +531,7 @@ def main():
     blocs = random.randint(0, 2 * size)
     # 0
     bloc_positions = set_bloc_pos(blocs, size)
+
     # []
     winning_values = random.randint(3, size)
     # 3
