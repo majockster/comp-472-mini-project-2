@@ -504,7 +504,6 @@ class Game:
                 print(F'Evaluation time: {round(end - start, 7)}s')
                 print(
                     F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
-            print(f'self depth {self.depth} and d1 {self.d1}')
             self.current_state[x][y] = self.player_turn
             self.switch_player()
 
