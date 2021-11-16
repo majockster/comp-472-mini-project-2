@@ -391,10 +391,10 @@ class Game:
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
             print(f"here x {x, y}, d1 {self.d1}")
-            return (self.e2(), x, y)
+            return (self.e2(max=max), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
             print(f"here o {x, y}, d2 {self.d2}")
-            return (self.e2(), x, y)
+            return (self.e2(max=max), x, y)
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
                 if self.current_state[i][j] == '.':
@@ -548,7 +548,7 @@ def set_bloc_pos(bloc_size, board_size):
 
 
 def main():
-    size = random.randint(3, 10)
+    size = random.randint(3, 7)
     # 3
     blocs = random.randint(0, 2 * size)
     # 0
@@ -561,7 +561,7 @@ def main():
     g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values, d1=max_depth_1,
              d2=max_depth_2)
     g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
-    g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.AI)
+    #g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.AI)
 
 
 if __name__ == "__main__":
