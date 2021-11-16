@@ -1,0 +1,1205 @@
+n 5, b 4, s 4, t 5
+Block positions: [(0, 3), (1, 2), (0, 4), (4, 0)]
+player_x 3, d1 6, a1 True, a2 True, e1 True, e2 False
+player_o 3, d2 6, a1 True, a2 True, e1 False, e2 True
+
+.	.	.	<>	<>	
+.	.	<>	.	.	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010006427764892578 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009980201721191406 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010023117065429688 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010006427764892578 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.000997781753540039 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010025501251220703 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009989738464355469 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010006427764892578 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009989738464355469 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.1210001s
+Player X under AI control plays: x = 0, y = 0
+ARD 4.852859719285687e-05
+
+X	.	.	<>	<>	
+.	.	<>	.	.	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009996891021728516 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009999275207519531 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0010020732879638672 seconds
+Time of e2 0.0 seconds
+Time of e2 0.000997781753540039 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Evaluation time: 0.0119996s
+Player O under AI control plays: x = 0, y = 2
+ARD 5.881926592658548e-05
+
+X	.	O	<>	<>	
+.	.	<>	.	.	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010008811950683594 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010023117065429688 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009984970092773438 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010013580322265625 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001119613647461 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009984970092773438 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009987354278564453 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001119613647461 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010008811950683594 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010006427764892578 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009989738464355469 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001596450805664 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010008811950683594 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010044574737548828 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0989997s
+Player X under AI control plays: x = 0, y = 1
+ARD 4.190599133154589e-05
+
+X	X	O	<>	<>	
+.	.	<>	.	.	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009996891021728516 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009989738464355469 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0010006427764892578 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009996891021728516 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Evaluation time: 0.010999s
+Player O under AI control plays: x = 1, y = 1
+ARD 6.661415100097656e-05
+
+X	X	O	<>	<>	
+.	O	<>	.	.	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0009989738464355469 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010006427764892578 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001119613647461 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010018348693847656 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001119613647461 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001119613647461 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.000997781753540039 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010025501251220703 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0779998s
+Player X under AI control plays: x = 1, y = 0
+ARD 3.0280965747255266e-05
+
+X	X	O	<>	<>	
+X	O	<>	.	.	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0009999275207519531 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009987354278564453 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009996891021728516 seconds
+Evaluation time: 0.0099978s
+Player O under AI control plays: x = 1, y = 4
+ARD 7.688082181490384e-05
+
+X	X	O	<>	<>	
+X	O	<>	.	O	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010006427764892578 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009987354278564453 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001119613647461 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010035037994384766 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009963512420654297 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0600011s
+Player X under AI control plays: x = 1, y = 3
+ARD 1.980054496538521e-05
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+.	.	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.00099945068359375 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009999275207519531 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Evaluation time: 0.0089998s
+Player O under AI control plays: x = 2, y = 1
+ARD 0.0
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+.	O	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.000997781753540039 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001119613647461 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009987354278564453 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0449998s
+Player X under AI control plays: x = 2, y = 0
+ARD 6.75723359391496e-05
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	.	.	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0010008811950683594 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009996891021728516 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009996891021728516 seconds
+Time of e2 0.0 seconds
+Evaluation time: 0.0069995s
+Player O under AI control plays: x = 2, y = 3
+ARD 0.0
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	.	O	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009980201721191406 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Time of e1 0.00099945068359375 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.001001596450805664 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0319989s
+Player X under AI control plays: x = 2, y = 2
+ARD 3.9203494202856925e-05
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	.	
+.	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0 seconds
+Time of e2 0.0009999275207519531 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009999275207519531 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Evaluation time: 0.0069995s
+Player O under AI control plays: x = 3, y = 0
+ARD 0.0
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	.	
+O	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010006427764892578 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009987354278564453 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009992122650146484 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0210021s
+Player X under AI control plays: x = 2, y = 4
+ARD 6.24731183052063e-05
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	.	.	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.001001596450805664 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0009999275207519531 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Evaluation time: 0.0049996s
+Player O under AI control plays: x = 3, y = 2
+ARD 0.00019993782043457032
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	.	O	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009999275207519531 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0009996891021728516 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010001659393310547 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0120003s
+Player X under AI control plays: x = 3, y = 1
+ARD 5.886133979348575e-05
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	X	O	.	.	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Time of e2 0.0 seconds
+Evaluation time: 0.0039992s
+Player O under AI control plays: x = 3, y = 4
+ARD 0.0
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	X	O	.	O	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0 seconds
+Time of e1 0.0010004043579101562 seconds
+Time of e1 0.0 seconds
+Evaluation time: 0.0060034s
+Player X under AI control plays: x = 3, y = 3
+ARD 0.0
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	X	O	X	O	
+<>	.	.	.	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 1 states are evaluated
+For depth 4 1 states are evaluated
+For depth 5 0 states are evaluated
+Time of e2 0.0 seconds
+Evaluation time: 0.0029979s
+Player O under AI control plays: x = 4, y = 3
+ARD 0.0
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	X	O	X	O	
+<>	.	.	O	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+For depth 2 0 states are evaluated
+For depth 3 2 states are evaluated
+For depth 4 2 states are evaluated
+Evaluation time: 0.0009992s
+Player X under AI control plays: x = 4, y = 1
+ARD nan
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	X	O	X	O	
+<>	X	.	O	.	
+
+For depth 0 0 states are evaluated
+For depth 1 0 states are evaluated
+Evaluation time: 0.0009987s
+Player O under AI control plays: x = 4, y = 2
+ARD nan
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	X	O	X	O	
+<>	X	O	O	.	
+
+For depth 0 0 states are evaluated
+Evaluation time: 0.0010026s
+Player X under AI control plays: x = 4, y = 4
+ARD nan
+
+X	X	O	<>	<>	
+X	O	<>	X	O	
+X	O	X	O	X	
+O	X	O	X	O	
+<>	X	O	O	X	
+
+It's a tie!

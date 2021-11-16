@@ -22,7 +22,9 @@ class Game:
 
     def initialize_game(self):
         self.current_state = []
+        self.h_states = []
         self.depth = 0
+        self.state = 0
         for x in range(0, self.board_size):
             self.current_state.append([])
             for y in range(0, self.board_size):
@@ -38,12 +40,14 @@ class Game:
 
     def draw_board(self):
         self.depth = 0
-        print()
+        f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
+        f.write('\n')
         for x in range(0, self.board_size):
             for y in range(0, self.board_size):
-                print(F'{self.current_state[x][y]}', end="\t")
-            print()
-        print()
+                f.write(F'{self.current_state[x][y]}\t')
+            f.write('\n')
+        f.write('\n')
+        f.close()
 
     def is_valid(self, px, py):
         if px < 0 or px > self.board_size - 1 or py < 0 or py > self.board_size - 1:
@@ -194,13 +198,15 @@ class Game:
     def check_end(self):
         self.result = self.is_end()
         # Printing the appropriate message if the game has ended
+        f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
         if self.result != None:
             if self.result == 'X':
-                print('The winner is X!')
+               f.write('The winner is X!\n')
             elif self.result == 'O':
-                print('The winner is O!')
+                f.write('The winner is O!\n')
             elif self.result == '.':
-                print("It's a tie!")
+                f.write("It's a tie!\n")
+            f.close()
             self.initialize_game()
         return self.result
 
@@ -216,6 +222,8 @@ class Game:
 
     def switch_player(self):
         self.depth = 0
+        self.state = 0
+        self.h_states = []
         if self.player_turn == 'X':
             self.player_turn = 'O'
         elif self.player_turn == 'O':
@@ -225,6 +233,7 @@ class Game:
     # Implementing e1
 
     def e1(self, max):
+        start = time.time()
         h = 0
         # check h in each row
         for i in range(0, self.board_size):
@@ -278,10 +287,14 @@ class Game:
                     num_o += 1
             h += num_x * self.win_val
             h -= num_o * self.win_val
-
+        end = time.time()
+        f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
+        f.write(f'Time of e1 {end - start} seconds\n')
+        f.close()
         return h
 
     def e2(self, max):
+        start = time.time()
         h = 0
         # check h in each row
         for i in range(0, self.board_size):
@@ -358,6 +371,10 @@ class Game:
                         num_o += 1
             h += num_x
             h -= num_o
+        end = time.time()
+        f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
+        f.write(f'Time of e2 {end - start} seconds\n')
+        f.close()
         if max:
             return h+ (-2 - h)
         else:
@@ -370,13 +387,14 @@ class Game:
         # 0  - a tie
         # 1  - loss for 'X'
         # We're initially setting it to 2 or -2 as worse than the worst case:
+        start = time.time()
         value = 2
         if max:
             value = -2
         x = None
         y = None
         result = self.is_end()
-
+        self.state = 0
         if result == 'X':
             return (-1, x, y)
         elif result == 'O':
@@ -384,11 +402,18 @@ class Game:
         elif result == '.':
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
+            end = time.time()
+            total = end - start
+            self.h_states.append(total)
             return (self.e2(max=max), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
+            end = time.time()
+            total = end - start
+            self.h_states.append(total)
             return (self.e2(max=max), x, y)
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
+                self.state += 1
                 if self.current_state[i][j] == '.':
                     if max:
                         self.current_state[i][j] = 'O'
@@ -405,10 +430,13 @@ class Game:
                             x = i
                             y = j
                     self.current_state[i][j] = '.'
-
+                    
         if (self.player_turn == 'X' and self.depth < self.d1) or (self.player_turn == 'O' and self.depth < self.d2):
+            f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
+            f.write(f'For depth {self.depth} {self.state} states are evaluated\n')
+            f.close()
             self.depth += 1
-
+        
         return (value, x, y)
 
     def alphabeta(self, alpha=-2, beta=2, max=False):
@@ -418,13 +446,14 @@ class Game:
         # 0  - a tie
         # 1  - loss for 'X'
         # We're initially setting it to 2 or -2 as worse than the worst case:
+        start = time.time()
         value = 2
         if max:
             value = -2
         x = None
         y = None
         result = self.is_end()
-
+        self.state = 0
         if result == 'X':
             return (-1, x, y)
         elif result == 'O':
@@ -432,12 +461,19 @@ class Game:
         elif result == '.':
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
+            end = time.time()
+            total = end - start
+            self.h_states.append(total)
             return (self.e1(max=max), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
-            return (self.e1(max=max), x, y)
+            end = time.time()
+            total = end - start
+            self.h_states.append(total)
+            return (self.e2(max=max), x, y)
 
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
+                self.state += 1
                 if self.current_state[i][j] == '.':
                     if max:
                         self.current_state[i][j] = 'O'
@@ -467,6 +503,9 @@ class Game:
                             beta = value
 
         if (self.player_turn == 'X' and self.depth < self.d1) or (self.player_turn == 'O' and self.depth < self.d2):
+            f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
+            f.write(f'For depth {self.depth} {self.state} states are evaluated\n')
+            f.close()
             self.depth += 1
 
         return (value, x, y)
@@ -497,13 +536,18 @@ class Game:
             if (self.player_turn == 'X' and player_x == self.HUMAN) or (
                     self.player_turn == 'O' and player_o == self.HUMAN):
                 if self.recommend:
-                    print(F'Evaluation time: {round(end - start, 7)}s')
-                    print(F'Recommended move: x = {x}, y = {y}')
+                    f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
+                    f.write(F'Evaluation time: {round(end - start, 7)}s\n')
+                    f.write(F'Recommended move: x = {x}, y = {y}\n')
+                    f.close()
                 (x, y) = self.input_move()
             if (self.player_turn == 'X' and player_x == self.AI) or (self.player_turn == 'O' and player_o == self.AI):
-                print(F'Evaluation time: {round(end - start, 7)}s')
-                print(
-                    F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}')
+                f = open(f"gameTrace-{self.board_size,self.blocs,self.win_val,self.time}.txt", "a")
+                f.write(F'Evaluation time: {round(end - start, 7)}s\n')
+                f.write(
+                    F'Player {self.player_turn} under AI control plays: x = {x}, y = {y}\n')
+                f.write(f'ARD {np.sum(self.h_states)/len(self.h_states)}\n')
+                f.close()
             self.current_state[x][y] = self.player_turn
             self.switch_player()
 
@@ -525,18 +569,32 @@ def set_bloc_pos(bloc_size, board_size):
 
 
 def main():
-    size = random.randint(3, 7)
+    size = 8
+    #random.randint(3, 7)
     # 3
-    blocs = random.randint(0, 2 * size)
+    blocs = 6
+    #random.randint(0, 2 * size)
     # 0
     bloc_positions = set_bloc_pos(blocs, size)
 
+    time = 5
+    #random.randint(3,7)
+    
     # []
-    winning_values = random.randint(3, size)
+    winning_values = 5
+    #random.randint(3, size)
+    f = open(f"gameTrace-{size,blocs,winning_values,time}.txt", "a")
+    f.write(f'n {size}, b {blocs}, s {winning_values}, t {time}\n')
+    f.write(f'Block positions: {bloc_positions}\n')
+    
     # 3
-    max_depth_1 = random.randint(3, size)
-    max_depth_2 = max_depth_1
-    g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values, d1=max_depth_1,
+    max_depth_1 = 6
+    #random.randint(3, size)
+    max_depth_2 = 6
+    f.write(f'player_x {Game.AI}, d1 {max_depth_1}, a1 {True}, a2 {True}, e1 {True}, e2 {False}\n')
+    f.write(f'player_o {Game.AI}, d2 {max_depth_2}, a1 {True}, a2 {True}, e1 {False}, e2 {True}\n')
+    f.close()
+    g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, time=time, win_val=winning_values, d1=max_depth_1,
              d2=max_depth_2)
     g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
     #g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.AI)
