@@ -632,3 +632,29 @@ def main():
 
 if __name__ == "__main__":
     main()
+# def main():
+#     size = 8
+#     # 3
+#     blocs = 6
+#     # 0
+#     bloc_positions = set_bloc_pos(blocs, size)
+#     #bloc_positions = [(0,0),(0,4),(4,0),(4,4)]
+#     # []
+#     winning_values = 5
+#     # 3
+#     max_depth_1 = 6
+#     max_depth_2 = 6
+
+
+#     player_logic = Game.ALPHABETA
+
+
+#     g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values, d1=max_depth_1,
+#              d2=max_depth_2)
+#     g.play(algo=player_logic, player_x=Game.AI, player_o=Game.AI)
+#     #g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
+#     #g.gameTrace(n=size, b=blocs, s=winning_values)
+#     g.scoreBoard(n = size, b = blocs, s = winning_values,
+#                 t = 5, depth1 = max_depth_1, depth2 = max_depth_2, player_logic = player_logic)
+# if name == "main":
+#     main()
