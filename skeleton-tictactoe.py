@@ -227,105 +227,7 @@ class Game:
 
     # Implementing e1
 
-    def e1(self):
-        # Check if there are no obstacles in the way
-        # Starting with horizontal
-        # Count the open rows,columns,diagonals
-
-        # For horizontal
-        numX = 0
-        numO = 0
-        h = 0
-        for i in range(0, self.board_size):
-            if (self.current_state[i].count('X') > 0):
-                for j in range(0, self.board_size-1):
-                    if self.current_state[i][j] == 'X' and (self.current_state[i][j+1] == '.' or
-                                                            self.current_state[i][j+1] == 'X'):
-                        numX += 1
-
-                #+ self.current_state[i].count('.') - self.current_state[i].count('<>')
-            if (self.current_state[i].count('O') > 0):
-                for j in range(0, self.board_size-1):
-                    if self.current_state[i][j] == 'O' and (self.current_state[i][j+1] == '.' or
-                                                            self.current_state[i][j+1] == 'O'):
-                        numO += 1
-                #+ self.current_state[i].count('.') - self.current_state[i].count('<>')
-
-        h += numX * self.win_val
-        h -= numO * self.win_val
-        #print(f'h = {h}')
-
-        # # For vertical
-        column_values = []
-        for i in range(0, self.board_size):
-            new_col = []
-            for j in range(0, self.board_size):
-                new_col.append(self.current_state[j][i])
-            column_values.append(new_col)
-
-        numX = 0
-        numO = 0
-        for x in range(0, self.board_size):
-            if (column_values[x].count('O') > 0):
-                for j in range(0, self.board_size-1):
-                    if column_values[x][j] == 'O' and (column_values[x][j+1] == '.' or
-                                                       column_values[x][j+1] == 'O'):
-                        numO += 1
-                #+ column_values[x].count('.') - column_values[x].count('<>')
-            if (column_values[x].count('X') > 0):
-                for j in range(0, self.board_size-1):
-                    if column_values[x][j] == 'X' and (column_values[x][j+1] == '.' or
-                                                       column_values[x][j+1] == 'X'):
-                        numX += 1
-                #+ column_values[x].count('.') - column_values[x].count('<>')
-
-        h += numX * self.win_val
-        h -= numO * self.win_val
-
-        numX = 0
-        numO = 0
-        # For main diagonal
-        main_diag_values = np.diag(np.fliplr(self.current_state), k=0)
-        if np.count_nonzero(main_diag_values == 'O') > 0:
-            for i in range(0, self.board_size-1):
-                if main_diag_values[i] == 'O' and (main_diag_values[i+1] == '.' or
-                                                   main_diag_values[i+1] == 'O'):
-                    numO += 1
-            #+ np.count_nonzero(main_diag_values == '.') - np.count_nonzero(main_diag_values == '<>')
-        if np.count_nonzero(main_diag_values == 'X') > 0:
-            for i in range(0, self.board_size-1):
-                if main_diag_values[i] == 'X' and (main_diag_values[i+1] == '.' or
-                                                   main_diag_values[i+1] == 'X'):
-                    numX += 1
-            #+ np.count_nonzero(main_diag_values == '.') - np.count_nonzero(main_diag_values == '<>')
-
-        h += numX * self.win_val
-        h -= numO * self.win_val
-
-        numX = 0
-        numO = 0
-        # Other diagonal
-        other_diag_values = np.diag(self.current_state, k=0)
-        if np.count_nonzero(other_diag_values == 'O') > 0:
-            for i in range(0, self.board_size-1):
-                if other_diag_values[i] == 'O' and (other_diag_values[i+1] == '.' or
-                                                    other_diag_values[i+1] == 'O'):
-                    numO += 1
-            #+ np.count_nonzero(other_diag_values == '.') - np.count_nonzero(other_diag_values == '<>')
-        if np.count_nonzero(other_diag_values == 'X') > 0:
-            for i in range(0, self.board_size-1):
-                if other_diag_values[i] == 'X' and (other_diag_values[i+1] == '.' or
-                                                    other_diag_values[i+1] == 'X'):
-                    numX += 1
-            #+ np.count_nonzero(other_diag_values == '.') - np.count_nonzero(other_diag_values == '<>')
-
-        h += numX * self.win_val
-        h -= numO * self.win_val
-
-        #print(f'numX({numX}) - numO({numO})')
-        return h
-
-    def e2(self):
+    def e1(self, max):
         h = 0
         # check h in each row
         for i in range(0, self.board_size):
@@ -382,6 +284,88 @@ class Game:
 
         return h
 
+    def e2(self, max):
+        h = 0
+        # check h in each row
+        for i in range(0, self.board_size):
+            num_x = 0
+            num_o = 0
+            for j in range(0, self.board_size-1):
+                if self.current_state[i][j] == "X":
+                    if self.current_state[i][j+1] == '.':
+                        num_x += 2
+                    else:
+                        num_x += 1
+                if self.current_state[i][j] == "O":
+                    if self.current_state[i][j+1] == '.':
+                        num_o += 2
+                    else:
+                        num_o += 1
+            h += num_x
+            h -= num_o
+
+        # check columns
+        for j in range(0, self.board_size-1):
+            num_x = 0
+            num_o = 0
+            for i in range(0, self.board_size):
+                if self.current_state[i][j] == "X":
+                    if self.current_state[i][j+1] == '.':
+                        num_x += 2
+                    else:
+                        num_x += 1
+                if self.current_state[i][j] == "O":
+                    if self.current_state[i][j+1] == '.':
+                        num_o += 2
+                    else:
+                        num_o += 1
+            h += num_x
+            h -= num_o
+        # # check right-tilt diagonals
+
+        for i in range(-(self.board_size - 1), self.board_size):
+            count_array = np.diag(self.current_state, k=i)
+            num_x = 0
+            num_o = 0
+
+            for j in range(0, len(count_array)-1):
+                if count_array[j] == "X":
+                    if count_array[j+1] == '.':
+                        num_x += 2
+                    else:
+                        num_x += 1
+                if count_array[j] == "O":
+                    if count_array[j+1] == '.':
+                        num_o += 2
+                    else:
+                        num_o += 1
+            h += num_x
+            h -= num_o
+
+        # # checking left-tilt diagonals
+        for i in range(-(self.board_size - 1), self.board_size):
+            count_array = np.diag((np.fliplr(self.current_state)), k=i)
+            num_x = 0
+            num_o = 0
+
+            for j in range(0, len(count_array)-1):
+                if count_array[j] == "X":
+                    if count_array[j+1] == '.':
+                        num_x += 2
+                    else:
+                        num_x += 1
+                if count_array[j] == "O":
+                    if count_array[j+1] == '.':
+                        num_o += 2
+                    else:
+                        num_o += 1
+            h += num_x
+            h -= num_o
+        if max:
+            return h+ (-2 - h)
+        else:
+            return h-(h-2)
+
     def minimax(self, max=False):
         # Minimizing for 'X' and maximizing for 'O'
         # Possible values are:
@@ -407,10 +391,10 @@ class Game:
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
             print(f"here x {x, y}, d1 {self.d1}")
-            return (self.e1(), x, y)
+            return (self.e2(), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
             print(f"here o {x, y}, d2 {self.d2}")
-            return (self.e1(), x, y)
+            return (self.e2(), x, y)
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
                 if self.current_state[i][j] == '.':
@@ -448,8 +432,6 @@ class Game:
         x = None
         y = None
         result = self.is_end()
-        # if self.depth < self.d1 or self.depth < self.d2:
-        #     self.depth += 1
 
         if result == 'X':
             print('1 X ' + str(self.depth))
@@ -462,12 +444,12 @@ class Game:
             return (0, x, y)
         elif self.player_turn == 'X' and self.depth >= self.d1:
             print(f"AB x {x, y}, d1 {self.d1}")
-            print(f"e2 = {self.e1()}")
-            return (self.e1(), x, y)
+            #print(f"e2 = {self.e2()}")
+            return (self.e1(max=max), x, y)
         elif self.player_turn == 'O' and self.depth >= self.d2:
             print(f"AB o {x, y}, d2 {self.d2}")
             #print(f"e1 = {self.e1()}")
-            return (self.e1(), x, y)
+            return (self.e1(max=max), x, y)
 
         for i in range(0, self.board_size):
             for j in range(0, self.board_size):
@@ -475,7 +457,7 @@ class Game:
                     if max:
                         self.current_state[i][j] = 'O'
                         (v, _, _) = self.alphabeta(alpha, beta, max=False)
-                        print(f'v1 AB {v}')
+                        print(f'v1 AB {v} value1 AB {value}')
                         if v > value:
                             print(f'{v} > {value}')
                             value = v
@@ -484,7 +466,7 @@ class Game:
                     else:
                         self.current_state[i][j] = 'X'
                         (v, _, _) = self.alphabeta(alpha, beta, max=True)
-                        print(f'v2 AB {v}')
+                        print(f'v2 AB {v} value2 AB {value}')
                         if v < value:
                             print(f'{v} < {value}')
                             value = v
@@ -575,11 +557,11 @@ def main():
     winning_values = random.randint(3, size)
     # 3
     max_depth_1 = random.randint(3, size)
-    max_depth_2 = random.randint(3, size)
+    max_depth_2 = max_depth_1
     g = Game(recommend=True, size=size, blocs=blocs, bloc_pos=bloc_positions, win_val=winning_values, d1=max_depth_1,
              d2=max_depth_2)
     g.play(algo=Game.ALPHABETA, player_x=Game.AI, player_o=Game.AI)
-    #g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.HUMAN)
+    g.play(algo=Game.MINIMAX, player_x=Game.AI, player_o=Game.AI)
 
 
 if __name__ == "__main__":
